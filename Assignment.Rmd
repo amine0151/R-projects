@@ -1,0 +1,75 @@
+---
+title: "Assingment"
+author: "Amine Benseddiq"
+date: "2023-03-10"
+output: html_document
+---
+
+
+### Analyzing the "2022 Fortune 1000" 
+### This dataset contains information on the top 1000 companies in the United States based on revenue. 
+```{r setup, include=FALSE}
+#reading the csv file
+fortune_df <- read.csv(file = "Fortune_1000.csv")
+```
+### Top 10 Fortune 100 companies?
+```{r}
+#What are the top 10 Fortune 100 companies?
+fortune_df[1:10,]
+```
+```{r}
+#Use str() to show and examine the structure of the dataset.
+
+str(fortune_df)
+```
+### Create and add a new column called "profit_margin" which calculates the profit margin for each company (profit/revenue).
+
+```{r}
+#Create and add a new column called "profit_margin"
+#which calculates the profit margin for each company (profit/revenue).
+
+profit_margin <- fortune_df$profit / fortune_df$revenue
+fortune_df$profit_margin <- profit_margin
+
+```
+Create and add a new column called "revenue_per_employee" which calculates the revenue per employee for each company.
+```{r}
+#Create and add a new column called "revenue_per_employee"
+#which calculates the revenue per employee for each company.
+
+revenue_per_employee <- fortune_df$revenue / fortune_df$num..of.employees
+fortune_df$revenue_per_employee <- revenue_per_employee
+```
+
+### Calculate the average profit_margin and revenue_per_employee.
+```{r}
+#calculate the average profit_margin and revenue_per_employee.
+summary(profit_margin)
+summary(revenue_per_employee)
+```
+
+#### Create a dataframe called "tech_companies" containing all companies that have "Technology" as their industry.
+```{r}
+#Create a dataframe called "tech_companies" containing all
+#companies that have "Technology" as their industry.
+
+tech_companies <- subset(fortune_df,sector == 'Technology')
+head(tech_companies)
+```
+
+### Perform further analyses on the "tech_companies" dataframe, such as calculating summary statistics and further analysis 
+```{r}
+#Perform further analyses on the "tech_companies" 
+#dataframe, such as calculating summary statistics and further analysis 
+
+summary(tech_companies$revenue)
+summary(tech_companies$profit)
+summary(tech_companies$profit_margin)
+
+plot(tech_companies$num..of.employees,tech_companies$revenue_per_employee)
+```
+
+### Analysis of the tech_companies dataset
+#### We observe that the lowest revenue of tech_companies is DocuSign with the value of '2107.2' and the company with the highest revenue with the value of '365817' is Apple.
+#### Also the company with the highest profit with the profit of '94680' is Apple and a margin of '0.25881793' and Splunk is the company with the lowest profit '-1339.1' and a margin of '-0.5008415305'
+#### Based on these observations, we can conclude that the technology industry is a highly variable and dynamic sector, with a wide range of companies and business models. Further analysis could be conducted to identify factors that are associated with high revenue, profit, and profit margins in this industry, such as the size of the company, the amount of investment in research and development, or the type of products or services offered.

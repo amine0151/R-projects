@@ -1,0 +1,52 @@
+#Create a vector called "sales" that contains the sales data for the year
+sales <- c(50000,40000,55000,60000,70000,80000,75000
+           ,85000,90000,65000,95000,100000)
+
+#Create a vector called "expenses" that contains the expenses data for the year
+expenses <- c(35000,55000,45000,50000,60000,65000,55000
+              ,70000,80000,75000,85000,90000)
+
+#Calculate the total sales for the year using the "sales" vector
+total_sales <- sum(sales)
+
+#Calculate the total expenses for the year using the "expenses" vector
+total_expenses <- sum(expenses)
+
+#Calculate the profit for each month using the "sales" and "expenses" vectors.
+monthly_profit <- sales - expenses
+
+#Create a vector called "months" that contains the names of the months.
+month <- c("January","February","March","April","May","June","July"
+            ,"August","September","October","November","December")
+
+#Name the "sales" vector using the "months" vector.
+names(sales) <- month
+
+#Calculate the average, minimum, and maximum monthly sales for the year.
+average_sales <- mean(sales)
+minimum_sales <- min(sales)
+maximum_sales <- max(sales)
+
+#Calculate the profit margin for each month (profit divided by sales).
+profit_margin <- monthly_profit / sales
+
+#Calculate the proportion of months in which the business performed well (defined as having a profit greater than $10,000).
+good_months <- sum(monthly_profit > 10000) / length(monthly_profit)
+
+#Calculate the average profit margin for the months where expenses were less than $60,000.
+mean(profit_margin[expenses < 60000])
+
+#Calculate the maximum profit for the months where expenses were greater than $70,000.
+max(monthly_profit[expenses > 70000])
+
+#Which months had sales greater than $80,000?
+month[sales > 80000]
+
+#List the months where expenses were greater than $65,000 and profit was positive.
+month[expenses > 65000 & monthly_profit > 0]
+
+#List the months where profit margin was greater than 0.1 and expenses were less than $70,000.
+month[profit_margin > 0.1 & expenses < 70000]
+
+#List the months where sales were greater than the average sales for the year.
+month[sales > average_sales]
